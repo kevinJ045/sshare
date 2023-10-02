@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Screen Capture Stream</title>
+		<style>
+			body{
+				margin: 0;
+			}
+			img{
+				width: 100%;
+			}
+		</style>
 </head>
 <body>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
-			const socket = io.connect();
-			
-			socket.on('data:ss', (id, data) => {
-				let element = document.getElementById(id);
-				if(!element){
-					element = document.createElement('img');
-					document.body.appendChild(element);
-				}
-				element.src = 'data:image/png;base64,'+data;
-			});
+		const socket = io.connect();
+		let room = location.hash.replace('#', '') || prompt('roomid');
+		element = document.createElement('img');
+		element.className = 'ss-el';
+		document.body.appendChild(element);
+		
+		socket.on('data:'+room, (data) => {
+			element.src = 'data:image/png;base64,'+data;
+		});
 	</script>
 </body>
 </html>
