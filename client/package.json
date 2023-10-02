@@ -9,6 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bin": "client.js",
   "dependencies": {
     "screenshot-desktop": "^1.15.0",
     "socket.io-client": "^4.7.2"
